@@ -48,6 +48,8 @@ jobs:
           Copy-Item assets/fonts/OFL-1.1.txt dist/licenses/Noto-Sans-SC-OFL.txt
           Copy-Item assets/fonts/SOURCE.md dist/licenses/Noto-Sans-SC-source.md
           Copy-Item docs/ROUTE_WORKBENCH.md dist/README.md
+          Copy-Item docs/FORK_REVIEW.md dist/
+          Copy-Item docs/ROUTE_WORKBENCH_TESTS.md dist/
           Copy-Item -Recurse examples/route-workbench dist/examples
           Get-FileHash dist/neko-route-workbench.exe -Algorithm SHA256 | Format-List | Out-File dist/SHA256.txt -Encoding utf8
       - uses: actions/upload-artifact@v4

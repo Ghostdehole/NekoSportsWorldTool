@@ -11,6 +11,7 @@
 | `cargo test --locked --lib tab_bar_stays_inside_offscreen_phone_and_desktop_frames` | 1 项通过 |
 | `cargo check --locked --lib` | 通过 |
 | `cargo check --locked --no-default-features --bin nekosportsworldtool` | 通过；原有 CLI 模块的 dead-code 警告仍存在 |
+| `cargo build --locked --bin neko-route-workbench` | Linux 独立调试构建通过 |
 | `git diff --check` | 通过 |
 
 覆盖内容包括：非法经纬度、JSON 版本/坐标系、GPX 命名空间、DTD 拒绝、多个轨迹段拒绝、大小/点数边界、闭合 GPX、按序途经点、单行边、断开路网、距离过远拒绝、OSM 缺失节点与步行权限、跑道标签、打点/平移/拖点/撤销、过期规划结果隔离、原子保存失败时保留旧数据、不对称路线适配和窄屏布局。

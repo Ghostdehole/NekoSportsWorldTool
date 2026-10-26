@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "name": "演示方形路线（非真实校园）",
+  "coordinate_system": "WGS84",
+  "closed": true,
+  "points": [
+    {"lat": 0.0, "lon": 0.0},
+    {"lat": 0.0, "lon": 0.002},
+    {"lat": 0.002, "lon": 0.002},
+    {"lat": 0.002, "lon": 0.0}
+  ]
+}

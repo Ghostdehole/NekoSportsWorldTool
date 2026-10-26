@@ -2,6 +2,17 @@
 
 # NekoSportsWorldTool
 
+## 此分支新增：自定义路线工作台
+
+在原仓库基础上新增 **不依赖学校点位** 的本地路线编辑器：地图打点、节点移动与排序、撤销/重做、距离预览、起终点和途经点路网规划、JSON 草稿及 GPX 路线导入导出。
+
+- 主程序打开「自定义路线」页，或运行独立程序 `neko-route-workbench.exe`。
+- 独立程序无需登录，不读取校园服务账号，不生成或提交运动成绩。
+- Windows 下载：本仓库 **Actions → Route Workbench → 成功运行 → Artifacts**。
+- [使用说明](docs/ROUTE_WORKBENCH.md) · [原仓库及三个 fork 的版本审查与采用说明](docs/FORK_REVIEW.md)
+
+以下保留原仓库文档。新路线工作台与下述原有协议功能独立。
+
 ![Release](https://img.shields.io/github/v/release/YanamiNeko/NekoSportsWorldTool)
 ![Build](https://github.com/YanamiNeko/NekoSportsWorldTool/actions/workflows/release.yml/badge.svg)
 ![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-blue)

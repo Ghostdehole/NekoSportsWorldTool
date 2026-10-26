@@ -92,6 +92,17 @@ impl MapState {
         )
     }
 
+    /// 屏幕坐标 → (lat, lon)，供独立路线编辑器打点使用。
+    pub fn from_screen(&self, rect: Rect, position: Pos2) -> (f64, f64) {
+        let lon = self.center.1
+            + (position.x - rect.center().x - self.offset.x) as f64
+                / (self.scale as f64 * MET_PER_DEG_LNG);
+        let lat = self.center.0
+            - (position.y - rect.center().y - self.offset.y) as f64
+                / (self.scale as f64 * MET_PER_DEG_LAT);
+        (lat, lon)
+    }
+
     /// 处理拖拽/缩放交互（需在分配好 rect 后调用）。
     pub fn interact(&mut self, ui: &egui::Ui, rect: Rect) {
         self.dragged = false;

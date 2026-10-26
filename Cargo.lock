@@ -2390,6 +2390,7 @@ dependencies = [
  "rand_distr",
  "rfd",
  "route-planner",
+ "route-workbench",
  "rsa",
  "serde",
  "serde_json",
@@ -3303,6 +3304,17 @@ dependencies = [
  "rand_distr",
  "rstar",
  "serde",
+]
+
+[[package]]
+name = "route-workbench"
+version = "0.1.0"
+dependencies = [
+ "petgraph",
+ "quick-xml 0.41.0",
+ "route-planner",
+ "serde",
+ "serde_json",
 ]
 
 [[package]]

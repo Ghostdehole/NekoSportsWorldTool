@@ -32,3 +32,13 @@ pub fn run_gui(options: eframe::NativeOptions) -> eframe::Result<()> {
         }),
     )
 }
+
+/// Launch only the local route planner, without session, identity, update or IP requests.
+#[cfg(feature = "gui")]
+pub fn run_route_planner_gui(options: eframe::NativeOptions) -> eframe::Result<()> {
+    eframe::run_native(
+        "Neko 自定义路线规划",
+        options,
+        Box::new(|cc| Ok(Box::new(ui::route_workbench::OfflinePlannerApp::new(cc)))),
+    )
+}

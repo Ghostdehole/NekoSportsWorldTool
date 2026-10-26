@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Synthetic demonstration geometry at the equator. NOT a real campus/map. -->
+<osm version="0.6" generator="Neko Route Workbench demo">
+  <node id="1" lat="0.0" lon="0.0"/>
+  <node id="2" lat="0.0" lon="0.002"/>
+  <node id="3" lat="0.002" lon="0.002"/>
+  <node id="4" lat="0.002" lon="0.0"/>
+  <way id="10">
+    <nd ref="1"/><nd ref="2"/><nd ref="3"/><nd ref="4"/><nd ref="1"/>
+    <tag k="highway" v="footway"/>
+  </way>
+</osm>

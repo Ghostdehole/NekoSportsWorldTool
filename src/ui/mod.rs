@@ -21,6 +21,7 @@ pub mod osm;
 mod preview_jobs;
 pub mod records;
 mod road_tools;
+pub mod route_workbench;
 pub mod run;
 pub mod theme;
 pub mod user;
@@ -121,6 +122,7 @@ pub struct App {
     /// 已加载的 OSM 路网（真实道路路由 + 地图显示共用）。
     pub network: Option<Arc<route_planner::RoadGraph>>,
     pub osm_page: osm::OsmPage,
+    pub route_workbench: route_workbench::RouteWorkbench,
     net_tx: Sender<osm::NetworkLoad>,
     net_rx: Receiver<osm::NetworkLoad>,
     preview_tx: Sender<preview_jobs::PreviewResult>,
@@ -364,6 +366,7 @@ impl App {
                 5 => self.draw_device(ui),
                 6 => self.log.render(ui),
                 7 => self.draw_osm_page(ui),
+                9 => self.route_workbench.draw(ui),
                 _ => self.draw_about(ui),
             }
         });
@@ -458,6 +461,7 @@ impl App {
                 path: config.osm_path.clone(),
                 ..Default::default()
             },
+            route_workbench: route_workbench::RouteWorkbench::default(),
             net_tx,
             net_rx,
             preview_tx,

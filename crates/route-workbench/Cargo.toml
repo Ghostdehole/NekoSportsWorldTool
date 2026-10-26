@@ -1,0 +1,13 @@
+[package]
+name = "route-workbench"
+version = "0.1.0"
+edition = "2021"
+description = "Offline route editing, local OSM routing and GPX interchange"
+license = "CC-BY-NC-4.0"
+
+[dependencies]
+route-planner = { path = "../route-planner" }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+quick-xml = "0.41"
+petgraph = "0.6"

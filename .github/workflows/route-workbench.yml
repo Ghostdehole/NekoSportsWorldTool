@@ -1,0 +1,58 @@
+name: Route Workbench
+
+on:
+  push:
+    branches: [feat/offline-route-workbench]
+  pull_request:
+    paths:
+      - 'crates/route-workbench/**'
+      - 'src/ui/**'
+      - 'src/lib.rs'
+      - 'src/bin/neko-route-workbench.rs'
+      - 'Cargo.*'
+      - '.github/workflows/route-workbench.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: route-workbench-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - name: Test local route model and connected routing
+        run: cargo test --locked -p route-workbench
+      - name: Test route editor
+        run: |
+          cargo test --locked --lib route_workbench
+          cargo test --locked --lib tab_bar_stays_inside_offscreen_phone_and_desktop_frames
+      - name: Check CLI compatibility
+        run: cargo check --locked --no-default-features --bin nekosportsworldtool
+      - name: Build standalone route planner
+        run: cargo build --locked --release --bin neko-route-workbench
+      - name: Package
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force dist | Out-Null
+          Copy-Item target/release/neko-route-workbench.exe dist/
+          Copy-Item LICENSE dist/
+          New-Item -ItemType Directory -Force dist/licenses | Out-Null
+          Copy-Item assets/fonts/OFL-1.1.txt dist/licenses/Noto-Sans-SC-OFL.txt
+          Copy-Item assets/fonts/SOURCE.md dist/licenses/Noto-Sans-SC-source.md
+          Copy-Item docs/ROUTE_WORKBENCH.md dist/README.md
+          Copy-Item -Recurse examples/route-workbench dist/examples
+          Get-FileHash dist/neko-route-workbench.exe -Algorithm SHA256 | Format-List | Out-File dist/SHA256.txt -Encoding utf8
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Neko-Route-Workbench-Windows-x64
+          path: dist/
+          if-no-files-found: error
+          retention-days: 30
